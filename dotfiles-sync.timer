@@ -1,9 +1,9 @@
 [Unit]
-Description=Sync dotfiles every hour
+Description=Sync dotfiles every 2 weeks
 
 [Timer]
 OnBootSec=5min
-OnUnitActiveSec=1h
+OnUnitActiveSec=2w
 
 [Install]
 WantedBy=timers.target
