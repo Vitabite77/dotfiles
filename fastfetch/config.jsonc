@@ -1,0 +1,68 @@
+{
+"$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema_v2.json",
+"logo": {
+    "source": "arch", // Можно указать путь к картинке или название дистрибутива
+    "padding": {
+        "top": 1
+    },
+    "color": {
+      "1": "38;5;178",
+      "2": "38;5;136"
+    }
+},
+"display": {
+    	"color": {
+        "keys": "38;5;64", // Цвет названий (например, OS, Host)
+        "title": "38;5;102"    // Цвет имени пользователя и хоста
+    }
+},
+"modules": [
+   "title",
+   "separator",
+   {
+        "type": "os",
+        "key": "Операционная система",
+        "keyColor": "38;5;64" // Можно использовать ANSI коды (32 = зеленый)
+    },
+    "host",
+    {
+    "type":"kernel",
+      "key": "Ядро",
+      "keyColor": "38;5;64"
+    },
+    {
+	    "type": "packages",
+	    "key": "Пакеты"
+    },
+    "shell",
+    {
+        "type": "display",
+        "key": "Монитор"
+    },
+    {
+      "type": "uptime",
+      "key": "В сети",
+      "keyColor": "38;5;64"
+    },
+    {
+      "type": "wm",
+      "key": "Граф. оболочка",
+      "keyColor": "38;5;64"
+    },
+    {
+      "type": "terminal",
+      "key": "Терминал",
+      "keyColor": "38;5;64"
+    },
+    {
+      "type": "memory",
+      "key": "Память",
+      "keyColor": "38;5;64"
+    },
+    "break",
+    {
+        "type": "colors",
+        "symbol": "circle" // Кружочки вместо квадратов смотрятся мягче
+    }
+]
+}

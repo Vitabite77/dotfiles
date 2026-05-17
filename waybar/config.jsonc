@@ -1,0 +1,82 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 35,
+    "spacing": 4,
+
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["custom/net_speed", "clock", "hyprland/language"],
+    
+    "modules-right": ["custom/theme-switcher","pulseaudio", "custom/cpu_combined", "custom/gpu_combined", "memory", "tray"],
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate"
+    },
+
+    "hyprland/window": {
+        "format": "{}"
+    },
+
+    "clock": {
+        "format": "TIME: {:%H:%M  %d.%m.%Y}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+	"tooltip": false
+    },
+
+    // Объединенный модуль процессора (нагрузка + температура)
+    "custom/cpu_combined": {
+        "interval": 2,
+        "exec": "echo \"I5 14300F: $(grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf \"%d\", usage}')% | $(sensors | grep -E 'Package id 0|Core 0' | head -n1 | awk '{print $4}' | sed 's/+//')\"",
+        "format": "󰻠 {}",
+        "tooltip": false
+    },
+
+    // Модуль видеокарты (для NVIDIA)
+    "custom/gpu_combined": {
+        "interval": 2,
+        "exec": "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu --format=csv,noheader,nounits | awk -F', ' '{print \"GPU: \" $1 \"% | \" $2 \"°C\"}'",
+        "format": "󰾲 {}",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "MEMORY: {}%"
+    },
+
+    "pulseaudio": {
+      "format": "🔊 {volume}%"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+
+    "custom/net_speed": {
+      "exec": "~/.config/waybar_scripts/net-speed.sh",
+      "interval": 1,
+      "format": "{}"
+    },
+
+    "custom/bluetooth": {
+        "format": "Bluetooth: {}",
+        "exec": "~/.config/waybar_scripts/bluetooth.sh",
+        "interval": 5,
+        "on-click": "blueman-manager"
+    },
+
+    "hyprland/language": {
+    "format": "󰌌 {}",
+    "format-en": "US",
+    "format-ru": "RU"
+    },
+
+    "custom/theme-switcher": {
+    "format": "  {}",
+    "exec": "cat ~/.config/waybar/current-theme",
+    "on-click": "~/.config/waybar/theme-menu.sh",
+    "interval": "once",
+    "signal": 8
+}
+}
